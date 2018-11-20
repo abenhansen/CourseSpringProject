@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="css.css"/>
+</head>
+<body>
+<header>
+</header>
+<a href="createCourse.html">
+    <button class="btn-create">create</button>
+</a>
+<table>
+    <thead>
+    <tr>
+        <th>Course</th>
+        <th>Study Programme</th>
+        <th>ECTS</th>
+        <th>Course Language</th>
+        <th>Minmum # of students</th>
+        <th>Maximum # of students</th>
+        <th>Teachers</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="course: ${courses}">
+        <td th:text="${course.engName}"/>
+        <td th:text="${course.studyProgram}"/>
+        <td th:text="${course.ECTS}"/>
+        <td th:text="${course.language}"/>
+        <td th:text="${course.minStud}"/>
+        <td th:text="${course.maxStud}"/>
+        <td th:text="${course.teachers}"/>
+        <td>
+            <!--<a th:href="${'editCourse/' + course.id}">-->
+                <!--<button class="btn-edit">Rediger</button>-->
+            <!--</a>-->
+            <!--<a th:href="${'sletReservation/' + reservation.reservationID}">-->
+                <!--<button class="btn-del">Slet</button>-->
+            <!--</a>-->
+            <a th:href="${'courseDetails/' + course.id}">
+            <button>More Info</button>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
