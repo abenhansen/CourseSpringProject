@@ -13,5 +13,4 @@ created courses and sign up for all of the courses he wants to join. He cannot a
 
 If an Admin is logged in he can do the same functions as Teacher, but he also have his own page where he can see all of the students
 registered. On that page he can either delete the student from the system and reject them completly, or he can press the button
-called approve or reject, where he can see the name fo the student and then choose the courses that he approves for the student to have
-next semester. He also got the option to press none, where the student will have no courses at all.
+called approve or reject, where he can see the name fo the student and then choose the courses that he approves and leaves the courses he rejects empty. He also got the option to press none, where the student will have no courses at all.
