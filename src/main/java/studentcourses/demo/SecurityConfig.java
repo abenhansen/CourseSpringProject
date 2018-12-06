@@ -34,10 +34,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
+                .antMatchers("/","/mainPage", "/courseInfo","/courseInfo/courseDetails/{id}","/mainPage")
+                .access("hasAnyAuthority('ROLE_TEACHER','ROLE_ADMIN', 'ROLE_STUDENT')")
                 .antMatchers("/courseInfo/courseCreate","/courseInfo/courseDelete/{id}")
                 .access("hasAnyAuthority('ROLE_TEACHER','ROLE_ADMIN')")
-                .antMatchers("/courseInfo","/courseInfo/courseDetails/{id}","/mainPage")
-                .access("hasAnyAuthority('ROLE_TEACHER','ROLE_ADMIN', 'ROLE_STUDENT')")
+
                 .antMatchers("/courseAdmin","/courseAdmin/courseJoinEdit/{id}","/courseAdmin/courseRemove/{id}").access("hasAuthority('ROLE_ADMIN')")
                 .antMatchers("/courseInfo/courseJoin").access("hasAuthority('ROLE_STUDENT')")
                 .and()
