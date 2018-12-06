@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{../frontEnd.css}">
     <title>Title</title>
 </head>
 <body>
@@ -9,8 +10,14 @@
 <div th:if="${#request.isUserInRole('ROLE_ADMIN')}">KUN ADMINS KAN SE DET HER</div>
 <div th:if="${#request.isUserInRole('ROLE_STUDENT')}">KUN STUDENT KAN SE DET HER</div>
 <div th:if="${#request.isUserInRole('ROLE_TEACHER')}">KUN LÆRERE KAN SE DET HER</div>
-<a th:href="@{/courses/courseInfo}">
+<div th:if="${#request.isUserInRole('ROLE_ADMIN') OR #request.isUserInRole('ROLE_TEACHER')}">KUN LÆRERE OG ADMINS KAN SE DET HER</div>
+<a th:href="@{/courseInfo}">
     <button>Courses</button>
 </a>
+<a th:href="@{/courseAdmin}">
+    <button th:if="${#request.isUserInRole('ROLE_ADMIN')}">Students</button>
+</a>
+
+
 </body>
 </html>

@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" type="text/css" th:href="css.css"/>
+    <link rel="stylesheet" th:href="@{../frontEnd.css}">
 </head>
 <body>
 <header>
 </header>
-<a href="createCourse.html">
-    <button class="btn-create">create</button>
+<a th:href="@{courseInfo/courseCreate}">
+    <button th:if="${#request.isUserInRole('ROLE_ADMIN') OR #request.isUserInRole('ROLE_TEACHER')}">create</button>
+</a>
+<a th:href="@{courseInfo/courseJoin}">
+    <button th:if="${#request.isUserInRole('ROLE_STUDENT')}">Join a Course</button>
 </a>
 <table>
     <thead>
@@ -35,11 +38,14 @@
             <!--<a th:href="${'editCourse/' + course.id}">-->
                 <!--<button class="btn-edit">Rediger</button>-->
             <!--</a>-->
-            <!--<a th:href="${'sletReservation/' + reservation.reservationID}">-->
-                <!--<button class="btn-del">Slet</button>-->
-            <!--</a>-->
-            <a th:href="${'courseDetails/' + course.id}">
+            <a th:href="${'courseInfo/courseDetails/' + course.id}">
             <button>More Info</button>
+            </a>
+            <a onclick="return confirm('Are you sure you want to delete this course?')" th:href="${'courseInfo/courseDelete/' + course.id}">
+                <button th:if="${#request.isUserInRole('ROLE_ADMIN') OR #request.isUserInRole('ROLE_TEACHER')}">Delete</button>
+            </a>
+            <a th:href="${'courseInfo/courseEdit/' + course.id}">
+                <button th:if="${#request.isUserInRole('ROLE_ADMIN') OR #request.isUserInRole('ROLE_TEACHER')}">Edit</button>
             </a>
         </td>
     </tr>

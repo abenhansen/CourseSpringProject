@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{../frontEnd.css}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Add New Course</h1>
+        <form method="Post" th:action="@{/courseInfo/courseCreate}">
+            <div class="form-group col-md-10">
+                <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+                <label for="dkName">Course name in Danish</label>
+                <input type="text" class="form-control" id="dkName" placeholder="Enter name" th:field="${course.dkName}"
+                       required="true"/>
+                <label for="engName">Course name in English</label>
+                <input type="text" class="form-control" id="engName" placeholder="Enter name"
+                       th:field="${course.engName}"
+                       required="true"/>
+                <label for="studyProgram">Study Program</label>
+                <select id="studyProgram" class="form-control" th:field="${course.studyProgram}" required="true">
+                    <option th:value="'Computer Science'" th:text="Computer-Science"></option>
+                    <option th:value="'Web Development'" th:text="Web-Development"></option>
+                    <option th:value="'Software development'" th:text="Software-Development"></option>
+                    <option th:value="'IT-Security'" th:text="IT-Security"></option>
+                </select>
+                <label for="mandatory">Mandatory or Elective?</label>
+                <select id="mandatory" class="form-control" th:field="${course.mandatory}" required="true">
+                    <option th:value="'Mandatory'" th:text="Mandatory"></option>
+                    <option th:value="'Elective'" th:text="Elective"></option>
+                </select>
+                <label for="ECTS">ECTS</label>
+                <input type="number" class="form-control" id="ECTS" min="1" max="300" placeholder="ECTS"
+                       th:field="${course.ECTS}" required="true"/>
+                <label for="language">Language</label>
+                <input type="text" class="form-control" id="language" placeholder="Enter language" th:field="${course.language}"
+                       required="true"/>
+                <label for="minStud">Minimum # of Students</label>
+                <input type="number" class="form-control" id="minStud" min="1" max="100" placeholder="0"
+                       th:field="${course.minStud}" required="true"/>
+                <label for="expStud">Excpected # of Students</label>
+                <input type="number" class="form-control" id="expStud" min="1" max="100" placeholder="0"
+                       th:field="${course.expStud}" required="true"/>
+                <label for="maxStud">Maximum # of Students</label>
+                <input type="number" class="form-control" id="maxStud" min="1" max="100" placeholder="0"
+                       th:field="${course.maxStud}" required="true"/>
+                <label for="prerequisites">Prerequisites</label>
+                <input type="text" class="form-control" id="prerequisites" placeholder="Prerequisites" th:field="${course.prerequisites}"
+                       required="true"/>
+                <label for="learningOutcome">Learning Outcome</label>
+                <input type="text" class="form-control" id="learningOutcome" placeholder="Learning Outcome" th:field="${course.learningOutcome}"
+                       required="true"/>
+                <label for="content">Content</label>
+                <input type="text" class="form-control" id="content" placeholder="Content" th:field="${course.content}"
+                       required="true"/>
+                <label for="acitivities">Acitivities</label>
+                <input type="text" class="form-control" id="acitivities" placeholder="Enter acitivities" th:field="${course.acitivities}"
+                       required="true"/>
+                <label for="examForm">Exam Form</label>
+                <input type="text" class="form-control" id="examForm" placeholder="Enter exam Form" th:field="${course.examForm}"
+                       required="true"/>
+                <select th:field="${course.teachers}" multiple="multiple">
+                    <option
+                            th:each="teacher : ${teachers}"
+                            th:value="${teacher.id}"
+                            th:text="${teacher.name}"
+                    ></option>
+                </select>
+            </div>
+
+
+            <button type="submit" class="btn btn-outline-success">Save</button>
+            <button type="reset" class="btn btn-outline-danger">Reset</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

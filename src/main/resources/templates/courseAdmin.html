@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{../frontEnd.css}">
+</head>
+<body>
+<header>
+</header>
+<table>
+    <thead>
+    <tr>
+        <th>Student</th>
+        <th>Email</th>
+        <th>Courses</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student: ${students}">
+        <td th:text="${student.name}"/>
+        <td th:text="${student.email}"/>
+        <td th:text="${student.courses}"/>
+        <td>
+            <a th:href="${'courseAdmin/courseJoinEdit/' + student.id}">
+                <button th:if="${#request.isUserInRole('ROLE_ADMIN')}">Approve or Reject</button>
+            </a>
+            <a onclick="return confirm('Do you reject the students choice of courses?')" th:href="${'courseAdmin/courseRemove/' + student.id}">
+                <button th:if="${#request.isUserInRole('ROLE_ADMIN')}">Reject</button>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

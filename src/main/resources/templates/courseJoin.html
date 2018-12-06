@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{../frontEnd.css}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Enter information</h1>
+        <form method="Post" th:action="@{/courseInfo/courseJoin}">
+            <div class="form-group col-md-10">
+                <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+                <label for="name">Your name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter name" th:field="${student.name}"
+                       required="true"/>
+                <label for="name">Your email</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter email" th:field="${student.name}"
+                       required="true"/>
+                <select th:field="${student.courses}" multiple="multiple">
+                    <option
+                            th:each="course : ${courses}"
+                            th:value="${course.id}"
+                            th:text="${course.engName}"
+                    ></option>
+                </select>
+            </div>
+
+
+            <button type="submit" class="btn btn-outline-success">Save</button>
+            <button type="reset" class="btn btn-outline-danger">Reset</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

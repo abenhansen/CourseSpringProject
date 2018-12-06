@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{../frontEnd.css}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Enter information</h1>
+        <form method="Post" th:action="@{/courseAdmin/courseJoinEdit}">
+            <div class="form-group col-md-10">
+                <input readonly hidden required th:value="${student.id}" th:field="${student.id}">
+                <label>Name of Student</label>
+                <input readonly required th:field="${student.name}">
+                <input readonly hidden required th:value="${student.email}" th:field="${student.email}">
+                <p>Choose Courses to Approve</p>
+                <select th:field="${student.courses}" multiple="multiple">
+                    <option
+                            th:each="course : ${courses}"
+                            th:value="${course.id}"
+                            th:text="${course.engName}"
+                    ></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-outline-success">Approve</button>
+            <button type="reset" class="btn btn-outline-danger">Reset</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -15,8 +15,7 @@
     }
 </style>
 <body style="font-family: sans-serif">
-<h1>Access is Denied!</h1>
-<a th:href="@{/}"><button>Try again</button></a>
+<h1>Access is Denied! You don't have the rights to go here</h1>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out" />
 </form>

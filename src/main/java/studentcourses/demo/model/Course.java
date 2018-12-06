@@ -28,6 +28,8 @@ public class Course {
     @JoinColumn(name = "id")
     private List<Teacher> teachers;
 
+
+
     public Course(String dkName, String engName, String studyProgram, String mandatory, int ECTS, String language, int minStud, int expStud, int maxStud, String prerequisites, String learningOutcome, String content, String acitivities, String examForm, List<Teacher> teachers) {
         this.dkName = dkName;
         this.engName = engName;
@@ -175,5 +177,10 @@ public class Course {
 
     public void setTeachers(List<Teacher> teachers) {
         this.teachers = teachers;
+    }
+
+    @Override
+    public String toString() {
+        return engName + "";
     }
 }

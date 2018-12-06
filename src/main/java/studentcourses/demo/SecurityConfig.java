@@ -5,9 +5,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 import javax.sql.DataSource;
 
@@ -32,10 +34,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-//                .antMatchers("/", "/mainPage").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/","/mainPage","/courses/courseInfo","/courses/courseDetails/{id}")
-                .access("hasAnyAuthority('ROLE_ADMIN','ROLE_STUDENT', 'ROLE_TEACHER')")
-                .antMatchers("/admin/").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/courseInfo/courseCreate","/courseInfo/courseDelete/{id}")
+                .access("hasAnyAuthority('ROLE_TEACHER','ROLE_ADMIN')")
+                .antMatchers("/courseInfo","/courseInfo/courseDetails/{id}","/mainPage")
+                .access("hasAnyAuthority('ROLE_TEACHER','ROLE_ADMIN', 'ROLE_STUDENT')")
+                .antMatchers("/courseAdmin","/courseAdmin/courseJoinEdit/{id}","/courseAdmin/courseRemove/{id}").access("hasAuthority('ROLE_ADMIN')")
+                .antMatchers("/courseInfo/courseJoin").access("hasAuthority('ROLE_STUDENT')")
                 .and()
                 .formLogin().loginPage("/login").failureUrl("/login?error")
                 .usernameParameter("username").passwordParameter("password")
@@ -45,7 +49,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().accessDeniedPage("/403")
                 .and()
                 .csrf();
+
     }
+
+
 
     @Bean
     public static NoOpPasswordEncoder passwordEncoder() {

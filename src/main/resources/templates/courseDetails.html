@@ -1,44 +1,73 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
-    <link rel="stylesheet" type="text/css" th:href="css.css"/>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" th:href="@{../../frontEnd.css}"/>
 </head>
 <body>
 <header>
 </header>
 
-<table>
-    <thead>
+<table style="width:100%">
     <tr>
-        <th>Course</th>
-        <th>Study Programme</th>
+        <th>Name of the course (Danish)</th>
+        <td th:text="${course.dkName}"></td>
+    </tr>
+    <tr>
+        <th>Name of the course (English)</th>
+        <td th:text="${course.engName}"></td>
+    </tr>
+    <tr>
+        <th>studyProgram</th>
+        <td th:text="${course.studyProgram}"> </td>
+    </tr>
+    <tr>
+        <th>Mandatory or Elective</th>
+        <td th:text="${course.mandatory}"> </td>
+    </tr>
+    <tr>
         <th>ECTS</th>
+        <td th:text="${course.ECTS}"> </td>
+    </tr>
+    <tr>
         <th>Course Language</th>
-        <th>Minmum # of students</th>
+        <td th:text="${course.language}"> </td>
+    </tr>
+    <tr>
+        <th>Minimum # of students</th>
+        <td th:text="${course.minStud}"> </td>
+    </tr>
+    <tr>
+        <th>Expected # of students</th>
+        <td th:text="${course.expStud}"> </td>
+    </tr>
+    <tr>
         <th>Maximum # of students</th>
-        <th>Teachers</th>
-        <th></th>
+        <td th:text="${course.maxStud}"> </td>
     </tr>
-    </thead>
-    <tbody>
-    <tr >
-        <td th:text="${course.engName}"/>
-        <td th:text="${course.studyProgram}"/>
-        <td th:text="${course.ECTS}"/>
-        <td th:text="${course.language}"/>
-        <td th:text="${course.minStud}"/>
-        <td th:text="${course.maxStud}"/>
-        <td th:text="${course.teachers}"/>
-        <td>
-            <!--<a th:href="${'editCourse/' + course.id}">-->
-            <!--<button class="btn-edit">Rediger</button>-->
-            <!--</a>-->
-            <!--<a th:href="${'sletReservation/' + reservation.reservationID}">-->
-            <!--<button class="btn-del">Slet</button>-->
-            <!--</a>-->
-        </td>
+    <tr>
+        <th>Prerequisites</th>
+        <td th:text="${course.prerequisites}"> </td>
     </tr>
-    </tbody>
+    <tr>
+        <th>Learning Outcome</th>
+        <td th:text="${course.learningOutcome}"> </td>
+    </tr>
+    <tr>
+        <th>Content</th>
+        <td th:text="${course.content}"> </td>
+    </tr>
+    <tr>
+        <th>Learning activities</th>
+        <td th:text="${course.acitivities}"> </td>
+    </tr>
+    <tr>
+        <th>Exam Form</th>
+        <td th:text="${course.examForm}"> </td>
+    </tr>
+    <th>Teachers</th>
+    <td th:text="${course.teachers}"> </td>
+    </tr>
 </table>
 </body>
 </html>
